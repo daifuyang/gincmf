@@ -13,5 +13,5 @@ type Demo struct {
 }
 
 func (model *Demo) AutoMigrate() {
-	cmf.NewDb().AutoMigrate(&model)
+	cmf.Db().AutoMigrate(&model)
 }

@@ -47,26 +47,26 @@ func AddAdminMenu(pid int, uniName string, name string, path string, hide int) {
 		Path:       path,
 		HideInMenu: hide,
 	}
-	cmf.NewDb().FirstOrCreate(&adminMenu)
+	cmf.Db().FirstOrCreate(&adminMenu)
 }
 
 func GetAdminMenu(query []string, queryArgs []interface{}) AdminMenu {
 	adminMenu := AdminMenu{}
 	queryStr := strings.Join(query, " AND ")
-	cmf.NewDb().Where(queryStr, queryArgs...).First(&adminMenu)
+	cmf.Db().Where(queryStr, queryArgs...).First(&adminMenu)
 	return adminMenu
 }
 
 func EditAdminMenu(id int, pid int, uniName string, name string, path string, hide int) {
 	adminMenu := AdminMenu{}
-	result := cmf.NewDb().Where("id = ?", id).First(&adminMenu)
+	result := cmf.Db().Where("id = ?", id).First(&adminMenu)
 	if result.RowsAffected > 0 {
 		adminMenu.ParentId = pid
 		adminMenu.UniqueName = uniName
 		adminMenu.Name = name
 		adminMenu.Path = path
 		adminMenu.HideInMenu = hide
-		cmf.NewDb().Save(&adminMenu)
+		cmf.Db().Save(&adminMenu)
 	}
 }
 
@@ -109,7 +109,7 @@ func recursionAddMenu(menus []tempAdminMenu, parentId int) {
 
 		// 保存菜单
 		if v.Path != "" {
-			result := cmf.NewDb().Create(&adminMenu)
+			result := cmf.Db().Create(&adminMenu)
 			if result.RowsAffected > 0 {
 				if len(v.Children) > 0 {
 					recursionAddMenu(v.Children, adminMenu.Id)
@@ -132,5 +132,5 @@ func inRule(name string, title string) {
 		Title: title,
 	}
 	// 加入到authRule规则表
-	cmf.NewDb().Where("name = ?",name).FirstOrCreate(&authRule)
+	cmf.Db().Where("name = ?",name).FirstOrCreate(&authRule)
 }

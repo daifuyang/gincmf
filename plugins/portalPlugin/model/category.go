@@ -56,7 +56,7 @@ func (model *PortalCategory) Index(c *gin.Context, query []string, queryArgs []i
 	var category []PortalCategory
 	cmf.Db().Where(queryStr, queryArgs...).Find(&category).Count(&total)
 
-	result := cmf.NewDb().Where(queryStr, queryArgs...).Limit(intPageSize).Offset((intCurrent - 1) * intPageSize).Find(&category)
+	result := cmf.Db().Where(queryStr, queryArgs...).Limit(intPageSize).Offset((intCurrent - 1) * intPageSize).Find(&category)
 
 	if result.Error != nil {
 		return cmfModel.Paginate{}, result.Error

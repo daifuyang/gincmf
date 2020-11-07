@@ -10,6 +10,6 @@ type asset struct {
 }
 
 func (_ *asset) AutoMigrate() {
-	_ = cmf.NewDb().AutoMigrate(&model.Asset{})
+	_ = cmf.Db().AutoMigrate(&model.Asset{})
 }
 

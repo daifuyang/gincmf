@@ -32,7 +32,7 @@ func (migrate Region) AutoMigrate() {
 	sqlArr := strings.Split(result, ";")
 	go func() {
 		for _, sql := range sqlArr {
-			cmf.NewDb().Exec(sql)
+			cmf.Db().Exec(sql)
 		}
 	}()
 }
