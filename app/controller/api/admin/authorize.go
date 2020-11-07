@@ -11,7 +11,7 @@ import (
 	"strconv"
 )
 
-type AuthorizeController struct {
+type Authorize struct {
 	rc controller.RestController
 }
 
@@ -27,7 +27,7 @@ type tempAuthorize struct {
 	ListOrder  float64 `gorm:"type:float;comment:'排序';default:10000" json:"list_order"`
 }
 
-func (rest *AuthorizeController) Get(c *gin.Context) {
+func (rest *Authorize) Get(c *gin.Context) {
 	var adminMenu []tempAuthorize
 	result := cmf.Db().Find(&adminMenu)
 
@@ -40,7 +40,7 @@ func (rest *AuthorizeController) Get(c *gin.Context) {
 	rest.rc.Success(c, "获取成功！", results)
 }
 
-func (rest *AuthorizeController) Show(c *gin.Context) {
+func (rest *Authorize) Show(c *gin.Context) {
 	var rewrite struct {
 		Id int `uri:"id"`
 	}
@@ -64,15 +64,15 @@ func (rest *AuthorizeController) Show(c *gin.Context) {
 	rest.rc.Success(c, "获取成功！", results)
 }
 
-func (rest *AuthorizeController) Edit(c *gin.Context) {
+func (rest *Authorize) Edit(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Edit", nil)
 }
 
-func (rest *AuthorizeController) Store(c *gin.Context) {
+func (rest *Authorize) Store(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Store", nil)
 }
 
-func (rest *AuthorizeController) Delete(c *gin.Context) {
+func (rest *Authorize) Delete(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Delete", nil)
 }
 
@@ -87,7 +87,7 @@ type aResultStruct struct {
 
 
 
-func (rest *AuthorizeController) recursionMenu(menus []tempAuthorize, parentId int,tree []string) []aResultStruct {
+func (rest *Authorize) recursionMenu(menus []tempAuthorize, parentId int,tree []string) []aResultStruct {
 
 	var results []aResultStruct
 

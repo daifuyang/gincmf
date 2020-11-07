@@ -12,11 +12,11 @@ import (
 	"github.com/gincmf/cmf/controller"
 )
 
-type TestController struct {
+type Test struct {
 	rc controller.RestController
 }
 
-func (rest *TestController) Get(c *gin.Context) {
+func (rest *Test) Get(c *gin.Context) {
 	qn := cmf.QiNiu{Bucket: "vlog"}
 	key,_ := qn.UploadFile("test/1111.md",util.CurrentPath() + "/todo.md")
 	rest.rc.Success(c, "操作成功Get："+key, nil)

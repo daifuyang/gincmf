@@ -12,16 +12,16 @@ import (
 )
 
 // AssetsController 图片资源控制器，定义了资源文件增删改查接口
-type UploadController struct {
+type Upload struct {
 	rc controller.RestController
 }
 
-func (rest *UploadController) Get(c *gin.Context) {
+func (rest *Upload) Get(c *gin.Context) {
 	uploadSetting := util.UploadSetting(c)
 	rest.rc.Success(c, "获取成功！", uploadSetting)
 }
 
-func (rest *UploadController) Show(c *gin.Context) {
+func (rest *Upload) Show(c *gin.Context) {
 	var rewrite struct {
 		id int `uri:"id"`
 	}
@@ -32,11 +32,11 @@ func (rest *UploadController) Show(c *gin.Context) {
 	rest.rc.Success(c, "操作成功show", nil)
 }
 
-func (rest *UploadController) Edit(c *gin.Context) {
+func (rest *Upload) Edit(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Edit", nil)
 }
 
-func (rest *UploadController) Store(c *gin.Context) {
+func (rest *Upload) Store(c *gin.Context) {
 
 	maxFiles := c.PostForm("max_files")
 	chunkSize := c.PostForm("chunk_size")
@@ -113,6 +113,6 @@ func (rest *UploadController) Store(c *gin.Context) {
 	rest.rc.Success(c, "修改成功",uploadSetting)
 }
 
-func (rest *UploadController) Delete(c *gin.Context) {
+func (rest *Upload) Delete(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Delete", nil)
 }

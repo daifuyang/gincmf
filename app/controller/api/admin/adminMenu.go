@@ -13,11 +13,11 @@ import (
 	"github.com/gincmf/cmf/controller"
 )
 
-type MenuController struct{
+type Menu struct{
 	rc controller.RestController
 }
 
-func (rest *MenuController) Get(c *gin.Context) {
+func (rest *Menu) Get(c *gin.Context) {
 	var adminMenu []model.AdminMenu
 	result := cmf.Db().Where("path <> ?", "").Order("list_order").Find(&adminMenu)
 
@@ -56,7 +56,7 @@ type resultStruct struct {
 	Routes     []interface{} `json:"routes"`
 }
 
-func (rest *MenuController) inMap(s string,target []model.AuthAccessRule) (result bool){
+func (rest *Menu) inMap(s string,target []model.AuthAccessRule) (result bool){
 	fmt.Println(s,target)
 	for _,v := range target{
 		if s == v.Name {
@@ -66,7 +66,7 @@ func (rest *MenuController) inMap(s string,target []model.AuthAccessRule) (resul
 	return  false
 }
 
-func (rest *MenuController) recursionMenu(menus []model.AdminMenu, parentId int) []resultStruct {
+func (rest *Menu) recursionMenu(menus []model.AdminMenu, parentId int) []resultStruct {
 
 	var results []resultStruct
 	for _, v := range menus {

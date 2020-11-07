@@ -5,15 +5,15 @@ import (
 	"github.com/gincmf/cmf/controller"
 )
 
-type IndexController struct {
+type Index struct {
 	rc controller.RestController
 }
 
-func (rest *IndexController) Get(c *gin.Context) {
+func (rest *Index) Get(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Get", nil)
 }
 
-func (rest *IndexController) Show(c *gin.Context) {
+func (rest *Index) Show(c *gin.Context) {
 	var rewrite struct {
 		Id int `uri:"id"`
 	}
@@ -24,14 +24,14 @@ func (rest *IndexController) Show(c *gin.Context) {
 	rest.rc.Success(c, "操作成功show", nil)
 }
 
-func (rest *IndexController) Edit(c *gin.Context) {
+func (rest *Index) Edit(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Edit", nil)
 }
 
-func (rest *IndexController) Store(c *gin.Context) {
+func (rest *Index) Store(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Store", nil)
 }
 
-func (rest *IndexController) Delete(c *gin.Context) {
+func (rest *Index) Delete(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Delete", nil)
 }

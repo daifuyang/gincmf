@@ -11,7 +11,7 @@ import (
 	"github.com/gincmf/cmf/controller"
 )
 
-type CategoryController struct {
+type Category struct {
 	rc controller.RestController
 }
 
@@ -22,7 +22,7 @@ type CategoryController struct {
  * @Param 
  * @return 
  **/
-func (rest *CategoryController) Get(c *gin.Context) {
+func (rest *Category) Get(c *gin.Context) {
 
 	query := []string{"delete_at = ?"}
 	queryArgs := []interface{}{"0"}
@@ -48,11 +48,11 @@ func (rest *CategoryController) Get(c *gin.Context) {
 /**
  * @Author return <1140444693@qq.com>
  * @Description 查询单个门户分类
- * @Date 2020/11/7 19:58:46
+ * @Date 2020/11/7 21:14:53
  * @Param 
  * @return 
  **/
-func (rest *CategoryController) Show(c *gin.Context) {
+func (rest *Category) Show(c *gin.Context) {
 	var rewrite struct {
 		Id int `uri:"id"`
 	}
@@ -63,14 +63,14 @@ func (rest *CategoryController) Show(c *gin.Context) {
 	rest.rc.Success(c, "操作成功show", nil)
 }
 
-func (rest *CategoryController) Edit(c *gin.Context) {
+func (rest *Category) Edit(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Edit", nil)
 }
 
-func (rest *CategoryController) Store(c *gin.Context) {
+func (rest *Category) Store(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Store", nil)
 }
 
-func (rest *CategoryController) Delete(c *gin.Context) {
+func (rest *Category) Delete(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Delete", nil)
 }

@@ -10,15 +10,15 @@ import (
 "github.com/gincmf/cmf/controller"
 )
 
-type DemoController struct {
+type Demo struct {
 	rc controller.RestController
 }
 
-func (rest *DemoController) Get(c *gin.Context) {
+func (rest *Demo) Get(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Get", nil)
 }
 
-func (rest *DemoController) Show(c *gin.Context) {
+func (rest *Demo) Show(c *gin.Context) {
 	var rewrite struct {
 		Id int `uri:"id"`
 	}
@@ -29,14 +29,14 @@ func (rest *DemoController) Show(c *gin.Context) {
 	rest.rc.Success(c, "操作成功show", nil)
 }
 
-func (rest *DemoController) Edit(c *gin.Context) {
+func (rest *Demo) Edit(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Edit", nil)
 }
 
-func (rest *DemoController) Store(c *gin.Context) {
+func (rest *Demo) Store(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Store", nil)
 }
 
-func (rest *DemoController) Delete(c *gin.Context) {
+func (rest *Demo) Delete(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Delete", nil)
 }

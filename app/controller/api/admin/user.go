@@ -18,11 +18,11 @@ import (
 	"time"
 )
 
-type UserController struct {
+type User struct {
 	rc controller.RestController
 }
 
-func (rest *UserController) Get(c *gin.Context) {
+func (rest *User) Get(c *gin.Context) {
 
 	var user []model.User
 
@@ -106,7 +106,7 @@ func (rest *UserController) Get(c *gin.Context) {
 	rest.rc.Success(c, "获取成功！", paginationData)
 }
 
-func (rest *UserController) Show(c *gin.Context) {
+func (rest *User) Show(c *gin.Context) {
 	var rewrite struct {
 		Id int `uri:"id"`
 	}
@@ -142,7 +142,7 @@ func (rest *UserController) Show(c *gin.Context) {
 	rest.rc.Success(c, "获取成功！", result)
 }
 
-func (rest *UserController) Edit(c *gin.Context) {
+func (rest *User) Edit(c *gin.Context) {
 	var rewrite struct {
 		Id int `uri:"id"`
 	}
@@ -221,7 +221,7 @@ func (rest *UserController) Edit(c *gin.Context) {
 	rest.rc.Success(c, "更新成功！", nil)
 }
 
-func (rest *UserController) Store(c *gin.Context) {
+func (rest *User) Store(c *gin.Context) {
 
 	userLogin := c.PostForm("user_login")
 	if userLogin == "" {
@@ -296,11 +296,11 @@ func (rest *UserController) Store(c *gin.Context) {
 	rest.rc.Success(c, "操作成功！", user)
 }
 
-func (rest *UserController) Delete(c *gin.Context) {
+func (rest *User) Delete(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Delete", nil)
 }
 
-func (rest *UserController) CurrentUser(c *gin.Context) {
+func (rest *User) CurrentUser(c *gin.Context) {
 	// 获取当前用户
 	var currentUser = gUtil.CurrentUser(c)
 

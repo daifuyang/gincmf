@@ -27,7 +27,7 @@ import (
 	"time"
 )
 
-type AssetsController struct {
+type Assets struct {
 	rc controller.RestController
 }
 
@@ -43,7 +43,7 @@ type AssetsController struct {
  * )
  */
 
-func (rest *AssetsController) Get(c *gin.Context) {
+func (rest *Assets) Get(c *gin.Context) {
 
 	var assets []model.Asset
 	query := "status = ?"
@@ -105,7 +105,7 @@ func (rest *AssetsController) Get(c *gin.Context) {
  *	   'status'		=> 1
  * )
  */
-func (rest *AssetsController) Show(c *gin.Context) {
+func (rest *Assets) Show(c *gin.Context) {
 	var rewrite struct {
 		id int `uri:"id"`
 	}
@@ -116,7 +116,7 @@ func (rest *AssetsController) Show(c *gin.Context) {
 	rest.rc.Success(c, "操作成功show", nil)
 }
 
-func (rest *AssetsController) Edit(c *gin.Context) {
+func (rest *Assets) Edit(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Edit", nil)
 }
 
@@ -131,7 +131,7 @@ func (rest *AssetsController) Edit(c *gin.Context) {
  *	   'status'		=> 1
  * )
  */
-func (rest *AssetsController) Store(c *gin.Context) {
+func (rest *Assets) Store(c *gin.Context) {
 
 	form, _ := c.MultipartForm()
 	files := form.File["file[]"]
@@ -178,7 +178,7 @@ func (rest *AssetsController) Store(c *gin.Context) {
  *	   'status'		=> 1
  * )
  */
-func (rest *AssetsController) Delete(c *gin.Context) {
+func (rest *Assets) Delete(c *gin.Context) {
 	var rewrite struct {
 		Id int `uri:"id"`
 	}

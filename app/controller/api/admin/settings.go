@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-type SettingsController struct {
+type Settings struct {
 	controller string
 	rc         controller.RestController
 }
@@ -25,7 +25,7 @@ type SettingsController struct {
  *	   'status' => 1
  * )
  */
-func (rest *SettingsController) Get(c *gin.Context) {
+func (rest *Settings) Get(c *gin.Context) {
 	option := &model.Option{}
 	siteResult := cmf.Db().First(option, "option_name = ?", "site_info") // 查询
 	if siteResult.RowsAffected > 0 {
@@ -35,7 +35,7 @@ func (rest *SettingsController) Get(c *gin.Context) {
 	}
 }
 
-func (rest *SettingsController) Show(c *gin.Context) {
+func (rest *Settings) Show(c *gin.Context) {
 	var rewrite struct {
 		id int `uri:"id"`
 	}
@@ -46,7 +46,7 @@ func (rest *SettingsController) Show(c *gin.Context) {
 	rest.rc.Success(c, "操作成功show", nil)
 }
 
-func (rest *SettingsController) Edit(c *gin.Context) {
+func (rest *Settings) Edit(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Edit", nil)
 }
 
@@ -61,7 +61,7 @@ func (rest *SettingsController) Edit(c *gin.Context) {
  *	   'status'		=> 1
  * )
  */
-func (rest *SettingsController) Store(c *gin.Context) {
+func (rest *Settings) Store(c *gin.Context) {
 	//siteInfo := &model.SiteInfo{
 	//	SiteName:           c.PostForm("site_name"),
 	//	AdminPassword:      c.PostForm("admin_password"),
@@ -89,6 +89,6 @@ func (rest *SettingsController) Store(c *gin.Context) {
 	rest.rc.Success(c, "修改成功", params)
 }
 
-func (rest *SettingsController) Delete(c *gin.Context) {
+func (rest *Settings) Delete(c *gin.Context) {
 	rest.rc.Success(c, "操作成功Delete", nil)
 }
