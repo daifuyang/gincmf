@@ -9,7 +9,7 @@ import cmf "github.com/gincmf/cmf/bootstrap"
 
 type Demo struct {
 	Id int `json:"id"`
-	Name string `gorm:"varchar(100)" json:"name"`
+	Name string `gorm:"type:varchar(100);comment:'唯一名称'" json:"name"`
 }
 
 func (model *Demo) AutoMigrate() {

@@ -46,6 +46,8 @@ func ApiListenRouter() {
 
 
 	cmf.Get("/test",new(admin.TestController).Get)
+	cmf.Get("/api/v1/region",new(common.RegionController).Get)
+	cmf.Get("/api/v1/region/:id",new(common.RegionController).Show)
 
 	common.RegisterOauthRouter()
 }

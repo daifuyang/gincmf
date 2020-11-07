@@ -309,7 +309,7 @@ func (rest *UserController) CurrentUser(c *gin.Context) {
 	}
 
 	result:= temp{
-		User:*currentUser,
+		User:currentUser,
 	}
 
 	controller.RestController{}.Success(c, "获取成功", result)

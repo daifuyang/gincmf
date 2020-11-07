@@ -6,16 +6,22 @@
 package plugins
 
 import (
-	"gincmf/plugins/demoPlugin/migrate"
+	demoMigrate "gincmf/plugins/demoPlugin/migrate"
 	demoPlugin "gincmf/plugins/demoPlugin/router"
+	portalMigrate "gincmf/plugins/portalPlugin/migrate"
+	portalPlugin "gincmf/plugins/portalPlugin/router"
 )
 
 func AutoRegister()  {
 
 	// 注册路由
 	demoPlugin.ApiListenRouter()
+	portalPlugin.ApiListenRouter()
 
 	// 注册数据库迁移
-	demoMigrate := migrate.Demo{}
-	demoMigrate.AutoMigrate()
+	dMigrate := demoMigrate.Demo{}
+	dMigrate.AutoMigrate()
+
+	pMigrate := portalMigrate.Category{}
+	pMigrate.AutoMigrate()
 }

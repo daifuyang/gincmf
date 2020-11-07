@@ -13,7 +13,9 @@ import (
 	"github.com/gincmf/cmf/controller"
 )
 
-type MenuController struct{}
+type MenuController struct{
+	rc controller.RestController
+}
 
 func (rest *MenuController) Get(c *gin.Context) {
 	var adminMenu []model.AdminMenu
@@ -40,8 +42,8 @@ func (rest *MenuController) Get(c *gin.Context) {
 
 	fmt.Println("showMenu",showMenu)
 
-	results := rest.recursionMenu(c,showMenu, 0)
-	controller.RestController{}.Success(c, "获取成功！", results)
+	results := rest.recursionMenu(showMenu, 0)
+	rest.rc.Success(c, "获取成功！", results)
 
 }
 
@@ -64,7 +66,7 @@ func (rest *MenuController) inMap(s string,target []model.AuthAccessRule) (resul
 	return  false
 }
 
-func (rest *MenuController) recursionMenu(c *gin.Context,menus []model.AdminMenu, parentId int) []resultStruct {
+func (rest *MenuController) recursionMenu(menus []model.AdminMenu, parentId int) []resultStruct {
 
 	var results []resultStruct
 	for _, v := range menus {
@@ -77,7 +79,7 @@ func (rest *MenuController) recursionMenu(c *gin.Context,menus []model.AdminMenu
 				ListOrder:  v.ListOrder,
 			}
 
-			routes := rest.recursionMenu(c,menus, v.Id)
+			routes := rest.recursionMenu(menus, v.Id)
 			childRoutes := make([]interface{}, len(routes))
 			for i, v := range routes {
 				childRoutes[i] = v

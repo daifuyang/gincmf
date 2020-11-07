@@ -24,10 +24,35 @@ func CurrentAdminId(c *gin.Context) string {
 }
 
 //获取当前用户信息
-func CurrentUser(c *gin.Context) *model.User {
-	u := &model.User{}
+func CurrentUser(c *gin.Context) model.User {
+	u := model.User{}
+
+	session := sessions.Default(c)
+
+	user := session.Get("user")
 	userId, _ := c.Get("user_id")
-	cmf.NewDb().First(u, "id = ?", userId)
+	userIdInt, _ := strconv.Atoi(userId.(string))
+
+	conf := cmf.Conf()
+	cmf.ManualDb(conf.Database.Name)
+
+	if user == nil {
+		cmf.NewDb().First(&u, "id = ?", userId)
+		jsonBytes, _ := json.Marshal(u)
+		session.Set("user", string(jsonBytes))
+		session.Save()
+	} else {
+		jsonBytes := user.(string)
+		json.Unmarshal([]byte(jsonBytes), &u)
+		if u.Id == 0 || u.Id != userIdInt {
+			u = model.User{}
+			cmf.NewDb().Where("id = ?", userId).First(&u)
+			jsonBytes, _ := json.Marshal(u)
+			session.Set("user", string(jsonBytes))
+			session.Save()
+			return u
+		}
+	}
 	return u
 }
 

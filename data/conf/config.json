@@ -23,10 +23,18 @@
       "charset": "utf8mb4",
       "prefix": "cmf_",
       "authcode": "XVlBzgbaiCMRAjWwhT"
+    },
+    "redis": {
+      "enabled": true,
+      "type": "redis",
+      "host": "127.0.0.1",
+      "password": "",
+      "port": "6379",
+      "database": 0
     }
   },
   "qiniu": {
-    "enabled":true,
+    "enabled": true,
     "accessKey": "RUJBQZ7AnKFbt1PJi2-HStPJUBrUc3JYWKHH6HmY",
     "secretKey": "HYG1t6wxGOggKyNrmroKEcFnQyAqxANqPTXFGcTq",
     "isHttps": false,

@@ -29,3 +29,7 @@ require (
 	gorm.io/driver/mysql v1.0.3 // indirect
 	gorm.io/gorm v1.20.5 // indirect
 )
+
+replace (
+	github.com/gincmf/cmf v0.0.6 => "../cmf"
+)
