@@ -2,6 +2,7 @@ package migrate
 
 import (
 	"fmt"
+	"gincmf/plugins"
 	"os"
 )
 
@@ -13,13 +14,7 @@ func AutoMigrate() {
 
 	_, err := os.Stat("./data/install.lock")
 	if err != nil {
-		new(option).AutoMigrate()
-		new(user).AutoMigrate()
-		new(asset).AutoMigrate()
-		new(role).AutoMigrate()
-		new(authAccess).AutoMigrate()
-		new(AdminMenu).AutoMigrate()
-		new(Region).AutoMigrate()
+		StartMigrate()
 	}
 
 	// 改为已安装
@@ -30,4 +25,17 @@ func AutoMigrate() {
 	fmt.Println(file)
 	file.Close()
 
+}
+
+func StartMigrate()  {
+	new(option).AutoMigrate()
+	new(user).AutoMigrate()
+	new(asset).AutoMigrate()
+	new(role).AutoMigrate()
+	new(authAccess).AutoMigrate()
+	new(AdminMenu).AutoMigrate()
+	new(Region).AutoMigrate()
+
+	// 插件数据库迁移注册
+	plugins.AutoMigrate()
 }

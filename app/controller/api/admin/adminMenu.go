@@ -19,7 +19,7 @@ type Menu struct{
 
 func (rest *Menu) Get(c *gin.Context) {
 	var adminMenu []model.AdminMenu
-	result := cmf.Db().Where("path <> ?", "").Order("list_order").Find(&adminMenu)
+	result := cmf.Db().Where("path <> ?", "").Order("list_order, id").Find(&adminMenu)
 
 	if result.RowsAffected == 0 {
 		controller.RestController{}.Error(c, "暂无菜单,请联系管理员添加！", nil)
@@ -39,8 +39,6 @@ func (rest *Menu) Get(c *gin.Context) {
 	if len(authAccessRule) == 0 {
 		showMenu = adminMenu
 	}
-
-	fmt.Println("showMenu",showMenu)
 
 	results := rest.recursionMenu(showMenu, 0)
 	rest.rc.Success(c, "获取成功！", results)

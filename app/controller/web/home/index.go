@@ -7,12 +7,12 @@ import (
 	"github.com/gincmf/cmf/view"
 )
 
-type IndexController struct {
-	c *web.ControllerStruct
+type Index struct {
+	c *web.Controller
 }
 
 //首页控制器
-func (this *IndexController) Index(c *gin.Context) {
+func (web *Index) Index(c *gin.Context) {
 	fmt.Println("header",c.Request.Header)
 	fmt.Println("tls",c.Request.TLS)
 	view.Fetch("index.html")

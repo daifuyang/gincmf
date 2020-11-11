@@ -183,11 +183,6 @@ func (rest *Assets) Delete(c *gin.Context) {
 		Id int `uri:"id"`
 	}
 
-	if err := c.ShouldBindUri(&rewrite); err != nil {
-		c.JSON(400, gin.H{"msg": err})
-		return
-	}
-
 	ids := c.QueryArray("ids")
 
 	fmt.Println("first_ids", ids)

@@ -9,5 +9,5 @@ import (
 //web路由初始化
 
 func WebListenRouter() {
-	cmf.Get("/", middleware.HomeBaseController, new(home.IndexController).Index)
+	cmf.Get("/", middleware.HomeBaseController, new(home.Index).Index)
 }

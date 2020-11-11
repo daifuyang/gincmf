@@ -4,6 +4,6 @@ type ControllerInterface interface {
 	Initialize()
 }
 
-type ControllerStruct struct {
+type Controller struct {
 
 }

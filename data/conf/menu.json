@@ -157,5 +157,51 @@
         ]
       }
     ]
+  },
+  {
+    "unique_name": "portal/default",
+    "name": "门户管理",
+    "path": "/portal",
+    "icon": "",
+    "hide_in_menu": 0,
+    "children": [
+      {
+        "unique_name": "portal/index",
+        "name": "文章管理",
+        "path": "/portal/index",
+        "icon": "",
+        "hide_in_menu": 0
+      },
+      {
+        "unique_name": "portal/category",
+        "name": "分类管理",
+        "path": "/portal/category",
+        "icon": "",
+        "hide_in_menu": 0,
+        "children": [
+          {
+            "unique_name": "portal/category/add",
+            "name": "添加分类",
+            "path": "/portal/category/add",
+            "icon": "",
+            "hide_in_menu": 1
+          }
+        ]
+      },
+      {
+        "unique_name": "portal/page",
+        "name": "页面管理",
+        "path": "/portal/page",
+        "icon": "",
+        "hide_in_menu": 0
+      },
+      {
+        "unique_name": "portal/tag",
+        "name": "标签管理",
+        "path": "/portal/tag",
+        "icon": "",
+        "hide_in_menu": 0
+      }
+    ]
   }
 ]

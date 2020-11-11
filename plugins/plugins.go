@@ -18,6 +18,9 @@ func AutoRegister()  {
 	demoPlugin.ApiListenRouter()
 	portalPlugin.ApiListenRouter()
 
+}
+
+func AutoMigrate()  {
 	// 注册数据库迁移
 	dMigrate := demoMigrate.Demo{}
 	dMigrate.AutoMigrate()

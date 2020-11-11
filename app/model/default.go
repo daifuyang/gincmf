@@ -12,3 +12,7 @@ type ReturnData struct {
 	Msg  string      `json:"msg"`
 	Data interface{} `json:"data"`
 }
+
+func AddTimeDate(data interface{})  {
+
+}

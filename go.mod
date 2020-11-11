@@ -27,9 +27,7 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	gopkg.in/oauth2.v3 v3.12.0
 	gorm.io/driver/mysql v1.0.3 // indirect
-	gorm.io/gorm v1.20.5 // indirect
+	gorm.io/gorm v1.20.5
 )
 
-replace (
-	github.com/gincmf/cmf v0.0.6 => "../cmf"
-)
+replace github.com/gincmf/cmf v0.0.6 => ../cmf

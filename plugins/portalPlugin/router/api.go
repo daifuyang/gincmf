@@ -15,6 +15,6 @@ import (
 func ApiListenRouter() {
 	adminGroup := cmf.Group("api/admin/v1", middleware.ApiBaseController)
 	{
-		adminGroup.Get("/portal/category",new(controller.Category).Get)
+		adminGroup.Rest("/portal/category",new(controller.Category))
 	}
 }
